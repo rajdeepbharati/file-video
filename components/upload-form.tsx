@@ -115,6 +115,7 @@ const UploadForm = ({ error, setError }: Props) => {
     createUpload().then((targetUrl) => {
       const r = new Resumable({
         target: targetUrl,
+        chunkSize: 1 * 1024 * 1024,
       });
       r.addFile(myfile);
       // TODO: Fallback to direct upload if Resumable.js isn't supported by the browser
