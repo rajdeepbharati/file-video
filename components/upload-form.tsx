@@ -10,7 +10,9 @@ const Resumable = require("rb-resumablejs/resumable");
 const acceptedFileTypes = ["video/mp4"];
 
 const fetcher = async (url: string) => {
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    credentials: 'omit'
+  });
   return res.json();
 };
 
@@ -72,7 +74,7 @@ const UploadForm = ({ error, setError }: Props) => {
     }
   }, [asset]);
 
-  const assetURL = process.env.DEMUX_URL + "asset";
+  const assetURL = process.env.DEMUX_URL + "asset/";
   const username = process.env.TOKEN_ID;
   const password = process.env.TOKEN_SECRET;
   const authHeader =
